@@ -127,6 +127,8 @@
 /index.php?option=com_kunena&view=topic&catid=7&id=9270
 /index.php?option=com_users&view=login
 /jdownloads/Source/indidbus.py
+/jdownloads/knewstuff/providers.xml
+/jdownloads/kstars/kstars-3.8.5.exe
 /password-reset.html
 /signin.html
 /support.html
