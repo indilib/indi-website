@@ -67,10 +67,19 @@ jobs:
               }
           }
           EOF
+          # Old files that live outside the site on the server (legacy/): empty stand-ins
+          # for the listed /jdownloads/ URLs that the site itself doesn't have
+          grep '^/jdownloads/' scripts/legacy-urls.txt | while read -r p; do
+            [ -e "dist$p" ] && continue
+            mkdir -p "$RUNNER_TEMP/legacy$(dirname "$p")"
+            touch "$RUNNER_TEMP/legacy$p"
+          done
+          mkdir -p "$RUNNER_TEMP/legacy"
           docker run -d --name nginx -p 8080:8080 \
             -v "$RUNNER_TEMP/nginx.conf:/etc/nginx/nginx.conf:ro" \
             -v "$PWD/deploy/nginx:/etc/nginx/indilib:ro" \
             -v "$PWD/dist:/home/indi/www/indilib.org:ro" \
+            -v "$RUNNER_TEMP/legacy:/home/indi/www/legacy:ro" \
             nginx:1.27-alpine
           sleep 2
           docker exec nginx nginx -t
