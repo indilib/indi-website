@@ -11,6 +11,8 @@ cover: "./diagram.webp"
 
 With a few button presses you can slew the mount, focus, rotate the camera, change filters and move around the KStars sky map, without touching a mouse.
 
+The idea came from a discussion on the StellarMate Discord about using a joystick with astronomy equipment. A gamepad plugged into a Windows PC cannot be used by INDI drivers on another computer, and the INDI joystick driver only covers mounts and focusers. RemoteINDIPAD solves both by sending gamepad input over the network and controlling KStars directly. You can read the full story in jctk's [blog post introducing RemoteINDIPAD](https://jctk.hatenablog.com/entry/2026/10/14/001127).
+
 ## How it works
 
 RemoteINDIPAD has two programs:
@@ -30,7 +32,17 @@ RemoteINDIPAD has two programs:
 | Filter wheel | Next or previous filter slot |
 | KStars sky map | Zoom in and out, rotate the map |
 
-The rotator starts with small 1 degree moves and speeds up the longer you hold the button.
+The rotator starts with small 1 degree moves and speeds up the longer you hold the button. Panning the sky map is not possible yet, because KStars does not offer it over D-Bus.
+
+The default layout on an Xbox style controller is:
+
+-   **Mount:** the D-pad slews north, south, east and west. Push the left stick left or right to change the slew speed. Press the right stick to stop.
+-   **Focuser:** X and Y focus in and out. Push the left stick up or down to change the step size.
+-   **Filter wheel:** the left and right shoulder buttons change the filter.
+-   **Rotator:** A and B rotate. Press the left stick to stop.
+-   **Sky map:** the right stick zooms and rotates the map.
+
+You can change any of these in the mapping editor. Short videos show each device in action: [sky map](https://www.youtube.com/watch?v=OqUyeu1Vd5c), [mount](https://www.youtube.com/watch?v=JPGiGcaAzdk), [focuser](https://www.youtube.com/watch?v=ZvXy296SCG8), [filter wheel](https://www.youtube.com/watch?v=TDGM1y-XFLo) and [rotator](https://www.youtube.com/watch?v=gHylE9CTuCY).
 
 So far it has been tested with the Microsoft Xbox Wireless Controller, ELECOM JC-U3712T and 8BitDo Zero 2 gamepads, and with the Juwei 17 mount, GEMINI EAF focuser, ZWO CAA rotator and ToupTek AWF-L filter wheel. Other INDI devices of the same type should work too.
 
@@ -72,4 +84,4 @@ On Windows, keep `remote_indipad_sender.exe` and `gamepad_profiles.json` in the 
 
 ## More information
 
-The [RemoteINDIPAD README](https://github.com/jctk/RemoteINDIPAD#readme) explains every setting, where the settings files are kept, and answers common questions. A Japanese README is also available. RemoteINDIPAD is free and released under the MIT license.
+jctk's [blog post](https://jctk.hatenablog.com/entry/2026/10/14/001127) tells the story behind the project and shares ideas for the future, such as button sets for each device and support for more than one gamepad. The [RemoteINDIPAD README](https://github.com/jctk/RemoteINDIPAD#readme) explains every setting, where the settings files are kept, and answers common questions. A Japanese README is also available. RemoteINDIPAD is free and released under the MIT license.
